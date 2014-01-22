@@ -131,7 +131,8 @@
                    (abort "ERROR:" (sh/stream-to-string result :err))))))
            (javac (assoc project
                     :java-source-paths [(.getPath dest)]
-                    :javac-options ["-Xlint:none"])))))))
+                    :javac-options (conj (or (:javac-options project) [])
+                                         "-Xlint:none"))))))))
 
 (defn compile-google-protobuf
   "Compile com.google.protobuf.*"
